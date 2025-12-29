@@ -1,52 +1,142 @@
-<<<<<<< HEAD
-# asset-fumindo-fe
-=======
-# .
+# Asset Management System (Fumindo)
 
-This template should help get you started developing with Vue 3 in Vite.
+Sistem Informasi Manajemen Aset berbasis web modern yang dibangun menggunakan **Vue 3** dan **Vite**. Aplikasi ini dirancang untuk mengelola inventaris perusahaan dengan fitur CRUD (Create, Read, Update, Delete) yang lengkap, autentikasi aman, dan antarmuka responsif.
 
-## Recommended IDE Setup
+## 🛠️ Teknologi yang Digunakan
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Core Framework:** [Vue 3](https://vuejs.org/) (Composition API & Script Setup)
+- **Build Tool:** [Vite](https://vitejs.dev/) (Super fast build time)
+- **Styling:** [Tailwind CSS v3](https://tailwindcss.com/)
+- **State Management:** [Pinia](https://pinia.vuejs.org/)
+- **Routing:** [Vue Router 4](https://router.vuejs.org/)
+- **HTTP Client:** [Axios](https://axios-http.com/)
+- **Icons:** [Lucide Vue](https://lucide.dev/)
 
-## Recommended Browser Setup
+---
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## 🚀 Persiapan & Instalasi
 
-## Type Support for `.vue` Imports in TS
+Pastikan Anda telah menginstal **Node.js** (Versi 18.0.0 atau terbaru direkomendasikan) di komputer Anda.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### 1. Clone Repository
 
-## Customize configuration
+```bash
+git clone https://github.com/username-anda/asset-fumindo.git
+cd asset-fumindo
+```
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### 2. Install Dependencies
 
-## Project Setup
+Install semua library yang dibutuhkan (Vue, Pinia, Tailwind, dll).
 
-```sh
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 3. Konfigurasi Environment (.env)
 
-```sh
+Aplikasi ini membutuhkan URL API Backend agar dapat berjalan.
+
+1. Buat file baru bernama `.env` di root folder (sejajar dengan `package.json`).
+2. Isi dengan konfigurasi berikut:
+
+```env
+# Ganti dengan URL Backend API Anda
+VITE_API_URL=http://localhost:8080
+```
+
+> **Catatan:** Variabel wajib diawali dengan `VITE_` agar dapat dibaca oleh browser.
+
+### 4. Jalankan Aplikasi (Mode Development)
+
+Untuk menjalankan server lokal:
+
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Buka browser dan akses: `http://localhost:5173/` (atau port lain sesuai terminal).
 
-```sh
-npm run build
+---
+
+## 📂 Struktur Folder
+
+Berikut adalah struktur direktori utama proyek agar mudah dipahami:
+
+```
+src/
+├── assets/             # File statis (CSS Utama, Logo, Gambar)
+│   └── main.css        # Entry point Tailwind CSS (@tailwind directives)
+├── components/         # Komponen UI yang dapat digunakan kembali
+│   ├── Header.vue      # Topbar (User info & Logout)
+│   └── Sidebar.vue     # Navigasi Menu Samping
+├── layouts/            # Struktur tata letak halaman
+│   └── MainLayout.vue  # Layout utama (Sidebar + Header + Content)
+├── router/             # Konfigurasi Rute & Navigasi
+│   └── index.ts        # Definisi URL & Navigation Guards
+├── stores/             # Global State Management (Pinia)
+│   ├── auth.ts         # Login/Logout logic & Token handling
+│   └── asset.ts        # CRUD Logic untuk data aset
+├── views/              # Halaman Utama (Pages)
+│   ├── LoginView.vue       # Halaman Login
+│   ├── DashboardView.vue   # Halaman Dashboard (Statistik)
+│   ├── AssetsView.vue      # Tabel Daftar Aset
+│   ├── AssetCreateView.vue # Form Tambah Aset
+│   └── AssetEditView.vue   # Form Edit Aset
+├── App.vue             # Root Component
+└── main.ts             # Entry point aplikasi Vue
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+---
 
-```sh
-npm run lint
-```
->>>>>>> 0c3b4ca (initial commit)
+## ✨ Fitur Utama
+
+### 1. Autentikasi (Authentication)
+
+- **Basic Auth Login:** Menggunakan enkripsi Base64 untuk mengirim kredensial ke server.
+- **Session Storage:** Token disimpan sementara di browser untuk menjaga sesi login.
+- **Navigation Guard:** Mencegah akses ke halaman dashboard tanpa login dan melempar user ke halaman login jika token tidak valid.
+
+### 2. Dashboard
+
+- Layout responsif dengan **Sidebar** yang bisa di-collapse di tampilan mobile.
+- Ringkasan statistik data (Total Aset, Nilai Aset, dll).
+
+### 3. Manajemen Aset (CRUD)
+
+- **Read (Lihat Data):** Menampilkan daftar aset dalam bentuk tabel yang rapi dengan indikator *Loading* dan *Error handling*.
+- **Create (Tambah):** Formulir input dengan validasi tipe data (otomatis konversi number untuk stok).
+- **Update (Edit):** Mengambil data lama berdasarkan ID (Pre-fill) sebelum user melakukan perubahan.
+- **Delete (Hapus):** Menghapus data dengan konfirmasi keamanan browser (`confirm`) dan pembaruan UI otomatis (Optimistic UI).
+
+### 4. Optimasi Performa
+
+- **Lazy Loading Routes:** Menggunakan `import()` dinamis pada Router. Halaman (seperti AssetsView) hanya didownload oleh browser saat user mengkliknya, membuat loading awal aplikasi sangat cepat.
+
+---
+
+## 📜 Skrip Tersedia
+
+- `npm run dev`: Menjalankan server development dengan Hot Reload (HMR).
+- `npm run build`: Melakukan build aplikasi untuk produksi (output di folder `dist`).
+- `npm run preview`: Melihat preview hasil build produksi secara lokal.
+- `npm run lint`: Memeriksa dan merapikan kode menggunakan ESLint/Prettier.
+
+---
+
+## ⚠️ Troubleshooting Umum
+
+**1. CSS Tailwind tidak muncul?**
+Pastikan file `src/main.ts` sudah mengimport file CSS utama:
+`import './assets/main.css'`
+
+**2. Error "Cannot read properties of undefined (reading 'imports')"?**
+Biasanya terjadi karena masalah cache Vite atau path folder di Windows.
+Solusi: Hapus folder `node_modules` dan file `package-lock.json`, lalu jalankan `npm install` lagi.
+
+**3. API Error (CORS)?**
+Jika muncul error CORS di browser console, pastikan Backend API Anda mengizinkan akses dari origin `http://localhost:5173`.
+
+---
+
+**Developed for Asset Fumindo Project.**
