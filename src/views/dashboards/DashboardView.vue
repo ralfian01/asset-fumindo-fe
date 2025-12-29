@@ -1,12 +1,11 @@
 <script setup lang="ts">
-// Logic dashboard chart dll
 </script>
 
 <template>
   <div>
     <h2 class="text-2xl font-bold text-gray-800 mb-6">Dashboard Overview</h2>
 
-    <!-- Contoh Statistik -->
+    <!-- Dummy stats -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
         <h3 class="text-gray-500 text-sm font-medium">Total Aset</h3>
