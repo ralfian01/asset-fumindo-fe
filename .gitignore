@@ -14,6 +14,11 @@ dist-ssr
 coverage
 *.local
 
+.vite/
+.vite
+.vscode/
+.vscode
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
