@@ -25,7 +25,17 @@ const router = createRouter({
         {
           path: 'assets',
           name: 'assets',
-          component: () => import('@/views/dashboards/AssetsView.vue')
+          component: () => import('@/views/dashboards/AssetsView.vue'),
+        },
+        {
+          path: 'assets/create',
+          name: 'create-assets',
+          component: () => import('@/views/dashboards/assets/AssetCreateView.vue')
+        },
+        {
+          path: 'assets/edit/:id',
+          name: 'edit-assets',
+          component: () => import('@/views/dashboards/assets/AssetEditView.vue')
         }
       ]
     },
