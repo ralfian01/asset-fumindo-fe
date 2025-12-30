@@ -7,6 +7,7 @@ import EyeOffIcon from '@/components/icons/EyeOffIcon.vue'
 const authStore = useAuthStore()
 const isLoading = ref(false)
 const error = ref<string | null>(null)
+const showPassword = ref(false)
 
 const form = ref({
   username: '',
